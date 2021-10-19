@@ -1,8 +1,8 @@
-import { Application } from "express";
+import { Router } from "express";
 import auth from "./auth";
 
-const mountRoutes = (app: Application) => {
-  app.use("/api/auth", auth);
-};
+const router = Router();
 
-export default mountRoutes;
+router.use("/api/auth", auth);
+
+export default router;

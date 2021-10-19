@@ -3,7 +3,7 @@ import express from "express";
 import session from "express-session";
 import passport from "passport";
 import sessionStore from "./config/sessionStore";
-import mountRoutes from "./routes";
+import routes from "./routes";
 import "./config/passport";
 
 // Servidor
@@ -31,7 +31,7 @@ app.use(passport.session());
 const port = process.env.PORT || 3000;
 
 // Rutas
-mountRoutes(app);
+app.use("/", routes);
 
 // Inicio del servidor
 app.listen(port, () => console.log(`Server listening on port ${port}...`));

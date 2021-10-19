@@ -1,7 +1,6 @@
 import passport from "passport";
 import { Strategy as LocalStrategy, VerifyFunction } from "passport-local";
 import bcrypt from "bcryptjs";
-import db from "./db";
 import User from "../models/User";
 
 interface IUser {
@@ -13,7 +12,7 @@ const verify: VerifyFunction = async (email, password, done) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return done(null);
+      return done(null, false);
     }
 
     const match = await bcrypt.compare(password, user.password);
